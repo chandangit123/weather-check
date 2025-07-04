@@ -1,7 +1,8 @@
-const apiKey = "0da98f8a41e6607520108d22f44ab7b6";
+const apiKey = "YOUR_API_KEY_HERE"; // Replace with your OpenWeatherMap API key
 
 const body = document.getElementById("body");
 const toggle = document.getElementById("darkModeToggle");
+const animationDiv = document.getElementById("weather-animation");
 
 toggle.addEventListener("change", () => {
   body.classList.toggle("dark");
@@ -48,23 +49,62 @@ async function getWeather() {
 }
 
 function updateBackground(condition) {
+  animationDiv.innerHTML = ""; // Clear previous
+
+  let bgGradient = "linear-gradient(to right, #00c6ff, #0072ff)";
+
   switch (condition) {
     case "Clear":
-      body.style.background = "linear-gradient(to right, #56ccf2, #2f80ed)";
+      bgGradient = "linear-gradient(to right, #56ccf2, #2f80ed)";
+      const sun = document.createElement("div");
+      sun.className = "sun-rays";
+      animationDiv.appendChild(sun);
       break;
+
     case "Clouds":
-      body.style.background = "linear-gradient(to right, #bdc3c7, #2c3e50)";
+      bgGradient = "linear-gradient(to right, #bdc3c7, #2c3e50)";
+      for (let i = 0; i < 5; i++) {
+        const cloud = document.createElement("div");
+        cloud.className = "cloud";
+        cloud.style.width = `${100 + i * 20}px`;
+        cloud.style.height = `${60 + i * 15}px`;
+        cloud.style.top = `${10 + i * 10}%`;
+        cloud.style.left = `${-200 + i * 100}px`;
+        animationDiv.appendChild(cloud);
+      }
       break;
+
     case "Rain":
-      body.style.background = "linear-gradient(to right, #2c3e50, #4ca1af)";
+      bgGradient = "linear-gradient(to right, #2c3e50, #4ca1af)";
+      for (let i = 0; i < 80; i++) {
+        const drop = document.createElement("div");
+        drop.className = "rain-drop";
+        drop.style.left = `${Math.random() * 100}vw`;
+        drop.style.animationDelay = `${Math.random()}s`;
+        animationDiv.appendChild(drop);
+      }
       break;
+
     case "Snow":
-      body.style.background = "linear-gradient(to right, #83a4d4, #b6fbff)";
+      bgGradient = "linear-gradient(to right, #83a4d4, #b6fbff)";
+      for (let i = 0; i < 40; i++) {
+        const snow = document.createElement("div");
+        snow.className = "snowflake";
+        snow.textContent = "❄";
+        snow.style.left = `${Math.random() * 100}vw`;
+        snow.style.fontSize = `${Math.random() * 20 + 10}px`;
+        snow.style.animationDelay = `${Math.random() * 5}s`;
+        animationDiv.appendChild(snow);
+      }
       break;
+
     case "Thunderstorm":
-      body.style.background = "linear-gradient(to right, #141e30, #243b55)";
+      bgGradient = "linear-gradient(to right, #141e30, #243b55)";
       break;
+
     default:
-      body.style.background = "linear-gradient(to right, #00c6ff, #0072ff)";
+      bgGradient = "linear-gradient(to right, #00c6ff, #0072ff)";
   }
+
+  document.body.style.background = bgGradient;
 }
