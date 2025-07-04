@@ -1,4 +1,4 @@
-const apiKey = "YOUR_API_KEY_HERE"; // Replace with your OpenWeatherMap API key
+const apiKey = "0da98f8a41e6607520108d22f44ab7b6"; // Replace with your OpenWeatherMap API key
 
 const body = document.getElementById("body");
 const toggle = document.getElementById("darkModeToggle");
