@@ -1,0 +1,115 @@
+/* Base styles */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #00c6ff, #0072ff);
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.5s ease;
+}
+
+.container {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, color 0.3s;
+}
+
+h1 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Dark mode */
+body.dark {
+  background: linear-gradient(to right, #2c3e50, #4ca1af);
+}
+
+body.dark .container {
+  background: #1e1e1e;
+  color: white;
+}
+
+body.dark input,
+body.dark button {
+  background-color: #333;
+  color: white;
+  border: 1px solid #777;
+}
+
+/* Toggle Switch */
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.toggle input {
+  display: none;
+}
+
+.slider {
+  width: 40px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+input:checked + .slider {
+  background-color: #4ca1af;
+}
+
+/* Other styles unchanged */
+.search-box {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  padding: 10px;
+  flex: 1;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.search-box button {
+  padding: 10px 15px;
+  border: none;
+  background: #0072ff;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.weather-info {
+  font-size: 16px;
+  color: inherit;
+}
